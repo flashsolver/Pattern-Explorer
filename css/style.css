@@ -10,17 +10,16 @@
     --secondary: #9c6644;
     --bg:        #dde5b6;
     --card:      #fefae0;
-    --text:      #1b4332;
-    --error:     #bc4749;
-    --accent:    #606c38;
-    --shadow:    rgba(27, 67, 50, 0.18);
-    --btn-text:  #ffffff;
+    --text: #1b4332;
+    --error: #bc4749;
+    --accent: #606c38;
+    --shadow: rgba(27, 67, 50, 0.18);
+    --btn-text: #ffffff;
     --progress-glow: rgba(45, 106, 79, 0.5);
     --pattern-bg: rgba(0,0,0,0.04);
     --border-style: dashed;
 }
 
-/* ── THEME OVERRIDES ── */
 body.theme-space {
     --primary:   #7b2ff7;
     --secondary: #f72585;
@@ -52,63 +51,19 @@ body.theme-candy {
 }
 
 body.theme-ocean {
-    --primary:   #0077b6;
-    --secondary: #f0a500;
-    --bg:        #b8e8f5;
-    --card:      #f0faff;
-    --text:      #03045e;
-    --error:     #e63946;
-    --accent:    #0096c7;
-    --shadow:    rgba(0, 119, 182, 0.2);
-    --btn-text:  #ffffff;
-    --progress-glow: rgba(0, 119, 182, 0.5);
-    --pattern-bg: rgba(0,0,0,0.04);
-    --border-style: solid;
+    --primary: #0077b6; --secondary: #f0a500; --bg: #b8e8f5; --card: #f0faff; --text: #03045e; --error: #e63946; --accent: #0096c7; --shadow: rgba(0, 119, 182, 0.2); --btn-text: #ffffff; --progress-glow: rgba(0, 119, 182, 0.5); --pattern-bg: rgba(0,0,0,0.04); --border-style: solid;
 }
 
 body.theme-retro {
-    --primary:   #39ff14;
-    --secondary: #ff00ff;
-    --bg:        #050505;
-    --card:      #0e0e0e;
-    --text:      #39ff14;
-    --error:     #ff3131;
-    --accent:    #ff00ff;
-    --shadow:    rgba(57, 255, 20, 0.25);
-    --btn-text:  #000000;
-    --progress-glow: rgba(57, 255, 20, 0.6);
-    --pattern-bg: rgba(57,255,20,0.04);
-    --border-style: solid;
+    --primary: #39ff14; --secondary: #ff00ff; --bg: #050505; --card: #0e0e0e; --text: #39ff14; --error: #ff3131; --accent: #ff00ff; --shadow: rgba(57, 255, 20, 0.25); --btn-text: #000000; --progress-glow: rgba(57, 255, 20, 0.6); --pattern-bg: rgba(57,255,20,0.04); --border-style: solid;
 }
 
 body.theme-winter {
-    --primary:   #2196f3;
-    --secondary: #90e0ef;
-    --bg:        #e8f4fd;
-    --card:      #ffffff;
-    --text:      #023e8a;
-    --error:     #e63946;
-    --accent:    #0096c7;
-    --shadow:    rgba(33, 150, 243, 0.15);
-    --btn-text:  #ffffff;
-    --progress-glow: rgba(33, 150, 243, 0.4);
-    --pattern-bg: rgba(33,150,243,0.05);
-    --border-style: dashed;
+    --primary: #2196f3; --secondary: #90e0ef; --bg: #e8f4fd; --card: #ffffff; --text: #023e8a; --error: #e63946; --accent: #0096c7; --shadow: rgba(33, 150, 243, 0.15); --btn-text: #ffffff; --progress-glow: rgba(33, 150, 243, 0.4); --pattern-bg: rgba(33,150,243,0.05); --border-style: dashed;
 }
 
 body.theme-desert {
-    --primary:   #e85d04;
-    --secondary: #ffba08;
-    --bg:        #f9e4c8;
-    --card:      #fffbf2;
-    --text:      #370617;
-    --error:     #9d0208;
-    --accent:    #dc2f02;
-    --shadow:    rgba(232, 93, 4, 0.2);
-    --btn-text:  #ffffff;
-    --progress-glow: rgba(232, 93, 4, 0.45);
-    --pattern-bg: rgba(232,93,4,0.05);
-    --border-style: dashed;
+    --primary: #e85d04; --secondary: #ffba08; --bg: #f9e4c8; --card: #fffbf2; --text: #370617; --error: #9d0208; --accent: #dc2f02; --shadow: rgba(232, 93, 4, 0.2); --btn-text: #ffffff; --progress-glow: rgba(232, 93, 4, 0.45); --pattern-bg: rgba(232,93,4,0.05); --border-style: dashed;
 }
 
 /* ── GLOBAL RESET ── */
@@ -127,60 +82,17 @@ body {
     padding: 0 16px 80px;
 }
 
-/* ── LAYOUT ROWS ── */
+/* ── TOP NAV ── */
 #top-nav {
     width: 100%;
     max-width: 640px;
     display: flex;
     justify-content: flex-end;
-    padding: 20px 0;
+    padding: 20px 0 10px;
     margin-bottom: 5px;
     z-index: 10;
 }
 
-#progress-row {
-    width: 100%;
-    max-width: 640px;
-    margin-bottom: 25px;
-    z-index: 5;
-}
-
-#progress-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-}
-
-#progress-label {
-    font-family: 'Baloo 2', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: 0.7;
-    text-align: left;
-}
-
-#progress-container {
-    width: 100%;
-    height: 14px;
-    background: rgba(0,0,0,0.12);
-    border-radius: 99px;
-    overflow: hidden;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
-}
-
-#progress-fill {
-    height: 100%;
-    width: 0%;
-    background: var(--primary);
-    border-radius: 99px;
-    transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 0 12px var(--progress-glow);
-}
-
-/* ── HAMBURGER BUTTON ── */
 #drawer-toggle {
     background: var(--card);
     border: none;
@@ -196,7 +108,6 @@ body {
 }
 
 #drawer-toggle:hover { transform: translateY(-2px); box-shadow: 0 6px 16px var(--shadow); }
-#drawer-toggle:active { transform: translateY(1px); }
 
 .hamburger {
     width: 26px;
@@ -212,6 +123,55 @@ body {
     height: 3px;
     background: var(--primary);
     border-radius: 99px;
+}
+
+/* ── PROGRESS ROW (Gamified) ── */
+#progress-row {
+    width: 100%;
+    max-width: 640px;
+    margin-bottom: 25px;
+    background: var(--card);
+    padding: 12px 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px var(--shadow);
+    border: 2px solid rgba(0,0,0,0.03);
+    z-index: 5;
+}
+
+#progress-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+#progress-label {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--primary);
+    white-space: nowrap;
+}
+
+#progress-container {
+    flex: 1;
+    height: 16px;
+    background: rgba(0,0,0,0.08);
+    border-radius: 99px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
+#progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 99px;
+    transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 15px var(--progress-glow);
 }
 
 /* ── GAME CARD ── */
@@ -256,29 +216,12 @@ body {
     transform: translateX(-50%);
 }
 
-.heart {
-    display: inline-block;
-    animation: heart-beat 2s infinite ease-in-out;
-}
+.heart { display: inline-block; animation: heart-beat 2s infinite ease-in-out; }
+@keyframes heart-beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
 
-@keyframes heart-beat {
-    0%, 100% { transform: scale(1); }
-    50%       { transform: scale(1.15); }
-}
+.heart.lost { filter: grayscale(1) opacity(0.25); animation: none; transform: scale(0.85); }
 
-.heart.lost {
-    filter: grayscale(1) opacity(0.25);
-    animation: none;
-    transform: scale(0.85);
-}
-
-#level-indicator {
-    background: rgba(0,0,0,0.06);
-    padding: 6px 16px;
-    border-radius: 99px;
-    font-size: 0.95rem;
-    font-weight: 800;
-}
+#level-indicator { background: rgba(0,0,0,0.06); padding: 6px 16px; border-radius: 99px; font-size: 0.95rem; font-weight: 800; }
 
 .boss-text {
     display: none;
@@ -324,23 +267,11 @@ body {
     flex-shrink: 0;
 }
 
-.pattern-item.appear {
-    animation: item-pop 0.4s forwards;
-    opacity: 0;
-}
+.pattern-item.appear { animation: item-pop 0.4s forwards; opacity: 0; }
 
-.question-mark {
-    color: var(--secondary);
-    background: var(--card);
-    border: 3px solid var(--secondary);
-    font-size: 2.2rem;
-    font-weight: 900;
-}
+.question-mark { color: var(--secondary); background: var(--card); border: 3px solid var(--secondary); font-size: 2.2rem; font-weight: 900; }
 
-@keyframes item-pop {
-    0%   { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
+@keyframes item-pop { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
 /* ── CHOICES ── */
 #choices-container {
@@ -364,28 +295,16 @@ body {
     line-height: 1;
 }
 
-.choice-button:hover:not(:disabled)  { transform: translateY(-5px); box-shadow: 0 12px 0 rgba(0,0,0,0.15); }
-.choice-button:active:not(:disabled) { transform: translateY(2px);  box-shadow: 0 4px 0 rgba(0,0,0,0.15); }
+.choice-button:hover:not(:disabled) { transform: translateY(-5px); box-shadow: 0 12px 0 rgba(0,0,0,0.15); }
+.choice-button:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 4px 0 rgba(0,0,0,0.15); }
 
 .choice-button.correct { background: var(--primary) !important; transform: scale(1.15); }
 .choice-button.wrong { background: var(--error) !important; animation: shake 0.4s; }
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25%       { transform: translateX(-12px); }
-    75%       { transform: translateX(12px); }
-}
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-12px); } 75% { transform: translateX(12px); } }
 
-/* ── FEEDBACK ── */
-#feedback-message {
-    min-height: 50px;
-    font-family: 'Baloo 2', sans-serif;
-    font-size: 1.6rem;
-    margin-top: 20px;
-    font-weight: 800;
-}
+#feedback-message { min-height: 50px; font-family: 'Baloo 2', sans-serif; font-size: 1.6rem; margin-top: 20px; font-weight: 800; }
 
-/* ── COMBO BADGE ── */
 #combo-badge {
     position: absolute;
     top: -25px;
@@ -409,25 +328,26 @@ body {
 #settings-drawer {
     position: fixed;
     top: 0;
-    right: -340px;
+    right: 0;
     width: 320px;
     height: 100vh;
     background: var(--card);
     z-index: 1000;
     box-shadow: -10px 0 40px rgba(0,0,0,0.15);
-    transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: translateX(100%); /* Hidden by default */
     display: flex;
     flex-direction: column;
-    padding: 40px 28px;
+    padding: 30px 24px;
 }
 
-#settings-drawer.open { right: 0; }
+#settings-drawer.open { transform: translateX(0); }
 
 #drawer-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(5px);
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
     z-index: 999;
     opacity: 0;
     pointer-events: none;
@@ -440,21 +360,44 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 30px;
-    border-bottom: 2px solid rgba(0,0,0,0.05);
+    margin-bottom: 25px;
     padding-bottom: 15px;
+    border-bottom: 2px solid rgba(0,0,0,0.05);
 }
 
-.drawer-header h2 { font-family: 'Baloo 2', sans-serif; font-size: 1.8rem; color: var(--primary); }
+.drawer-header h2 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.7rem;
+    color: var(--primary);
+    margin: 0;
+}
 
-#drawer-close { background: none; border: none; font-size: 3rem; cursor: pointer; opacity: 0.5; }
+#drawer-close {
+    background: none;
+    border: none;
+    font-size: 3rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--text);
+    opacity: 0.4;
+    transition: opacity 0.2s;
+    padding: 0 10px;
+}
 
-.theme-list { display: flex; flex-direction: column; gap: 12px; }
+#drawer-close:hover { opacity: 1; }
+
+.theme-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
 
 .theme-option {
     display: flex;
     align-items: center;
-    padding: 14px 20px;
+    padding: 15px 18px;
     background: rgba(0,0,0,0.03);
     border: 2px solid transparent;
     border-radius: 16px;
@@ -462,68 +405,50 @@ body {
     transition: all 0.2s;
     text-align: left;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     color: var(--text);
-}
-
-.theme-option.active { border-color: var(--primary); background: var(--bg); }
-
-/* ── OVERLAYS ── */
-#end-screen, #game-over-screen {
-    display: none;
-    position: absolute;
-    inset: 0;
-    background: var(--card);
-    z-index: 100;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 28px;
-    padding: 24px;
-}
-
-.restart-btn {
-    background: var(--primary);
-    color: var(--btn-text);
-    border: none;
-    padding: 18px 45px;
-    font-size: 1.5rem;
-    font-weight: 800;
-    border-radius: 18px;
-    cursor: pointer;
-    margin-top: 30px;
-    box-shadow: 0 6px 0 rgba(0,0,0,0.12);
-}
-
-/* ── FOOTER ── */
-#game-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    padding: 12px 0;
-    background: var(--card);
-    border-top: 1px solid rgba(0,0,0,0.06);
-    text-align: center;
-    font-size: 0.85rem;
-    font-weight: 700;
-    opacity: 0.5;
-    z-index: 5;
 }
 
-/* ── CANVAS ── */
-canvas#confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 999; }
+.theme-option:hover { background: rgba(0,0,0,0.06); }
+.theme-option.active {
+    border-color: var(--primary);
+    background: var(--bg);
+}
 
-/* ── MOBILE PASS ── */
+/* --- MOBILE PASS ── */
 @media (max-width: 600px) {
-    body { padding-top: 10px; }
-    #top-nav { padding: 15px 0; margin-bottom: 5px; }
-    #progress-row { margin-bottom: 15px; width: 95%; }
-    #progress-label { display: none; }
-    #game-container { padding: 20px 15px; width: 98%; border-radius: 22px; }
-    #stats { font-size: 0.9rem; }
-    #lives-container { font-size: 1.1rem; }
-    .pattern-item { width: 58px; height: 58px; font-size: 2.1rem; border-radius: 14px; }
-    .choice-button { font-size: 2.4rem; padding: 12px 20px; }
-    #settings-drawer { width: 85%; }
+    body { padding: 0 12px 60px; }
+    
+    #top-nav { padding: 15px 0 5px; }
+    
+    #progress-row { 
+        padding: 10px 15px; 
+        margin-bottom: 15px;
+        width: 100%; 
+    }
+    
+    #progress-wrapper { gap: 10px; }
+    #progress-label { font-size: 0.75rem; letter-spacing: 1px; }
+    #progress-container { height: 14px; }
+
+    #game-container { 
+        padding: 20px 12px; 
+        width: 100%; 
+        border-radius: 24px; 
+    }
+    
+    #stats { font-size: 0.9rem; margin-bottom: 15px; }
+    #lives-container { font-size: 1.15rem; }
+    
+    #settings-drawer { 
+        width: 280px; 
+        padding: 25px 20px;
+    }
+    
+    .theme-option { padding: 12px 15px; font-size: 1.05rem; }
+}
+
+@media (max-width: 350px) {
+    #settings-drawer { width: 100%; }
 }
