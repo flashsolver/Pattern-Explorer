@@ -1,12 +1,12 @@
 :root {
-    --primary: #4caf50;
-    --secondary: #ff9800;
-    --bg: #f0f4f8;
-    --card: #ffffff;
-    --text: #333;
-    --error: #f44336;
-    --accent: #2196f3;
-    --shadow: rgba(0, 0, 0, 0.15);
+    --primary: #2d6a4f; /* Deep Forest Green */
+    --secondary: #9c6644; /* Earthy Wood Brown */
+    --bg: #e9edc9; /* Soft Leaf/Moss Background */
+    --card: #fefae0; /* Warm Creamy Paper */
+    --text: #1b4332; /* Very Dark Green Text */
+    --error: #bc4749; /* Muted Red-Earth */
+    --accent: #606c38; /* Olive Green Accent */
+    --shadow: rgba(27, 67, 50, 0.15); /* Dark Greenish Shadow */
 }
 
 body.theme-space {
@@ -277,11 +277,73 @@ canvas#confetti-canvas {
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.pattern-item.appear {
-    animation: item-pop 0.4s forwards;
+/* --- RESPONSIVE DESIGN --- */
+
+@media (max-width: 600px) {
+    #game-container {
+        width: 95%;
+        padding: 20px;
+        margin-top: 130px; /* Increased to fit stacked header */
+    }
+
+    .theme-selector {
+        top: -110px; /* Top-most element */
+        width: 100%;
+        justify-content: center;
+    }
+
+    #progress-wrapper {
+        top: -65px; /* Directly under themes */
+        width: 100%;
+        align-items: center;
+    }
+
+    #progress-label {
+        font-size: 0.75rem;
+    }
+
+    #progress-container {
+        width: 80%; /* Slightly narrower for mobile elegance */
+        height: 8px;
+    }
+
+    .theme-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    #pattern-display {
+        font-size: 2.2rem;
+        padding: 15px;
+        gap: 8px;
+    }
+
+    .choice-button {
+        font-size: 2.5rem;
+        padding: 10px 18px;
+    }
+
+    #stats {
+        font-size: 0.9rem;
+    }
+
+    #feedback-message {
+        font-size: 1.2rem;
+        height: 50px;
+    }
+
+    #combo-badge {
+        font-size: 1.1rem;
+        padding: 6px 16px;
+    }
 }
 
-@keyframes item-pop {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+@media (max-width: 400px) {
+    #pattern-display {
+        font-size: 1.8rem;
+    }
+    
+    .choice-button {
+        font-size: 2rem;
+    }
 }
