@@ -5,9 +5,10 @@ const CONFIG = {
     TOTAL_LEVELS: 15,
     BASE_SCORE: 10,
     COMBO_BONUS: 5,
-    PARTICLE_COUNT: 120,
+    PARTICLE_COUNT: 100,
     ANIMATION_DELAY: 0.1,
-    FEEDBACK_DURATION: 1200
+    FEEDBACK_DURATION: 1200,
+    INITIAL_LIVES: 3
 };
 
 /**
@@ -47,6 +48,7 @@ const AudioManager = {
 
     playError() {
         this.play(220, 'triangle', 0.3, 0.15); // A3
+        this.play(110, 'sawtooth', 0.3, 0.1); // Low buzz
     },
 
     playVictory() {
@@ -54,12 +56,17 @@ const AudioManager = {
         notes.forEach((f, i) => {
             setTimeout(() => this.play(f, 'square', 0.4, 0.05), i * 150);
         });
+    },
+
+    playGameOver() {
+        this.play(220, 'sawtooth', 0.5, 0.1);
+        setTimeout(() => this.play(110, 'sawtooth', 0.8, 0.1), 200);
     }
 };
 
 /**
  * VISUAL EFFECTS MANAGER
- * Handles confetti and canvas animations
+ * Handles theme-specific particles and animations
  */
 const VisualManager = {
     canvas: null,
@@ -79,17 +86,33 @@ const VisualManager = {
         this.canvas.height = window.innerHeight;
     },
 
-    createConfetti() {
+    createParticles(theme) {
+        const props = this.getThemeProps(theme);
         this.particles = Array.from({length: CONFIG.PARTICLE_COUNT}, () => ({
             x: Math.random() * this.canvas.width,
-            y: -20,
-            size: Math.random() * 8 + 4,
-            color: `hsl(${Math.random() * 360}, 75%, 60%)`,
-            speed: Math.random() * 4 + 2,
+            y: props.spawnY === 'bottom' ? this.canvas.height + 20 : -20,
+            size: Math.random() * props.maxSize + props.minSize,
+            color: props.colors ? props.colors[Math.floor(Math.random() * props.colors.length)] : `hsl(${Math.random() * 360}, 75%, 60%)`,
+            speedX: Math.random() * 4 - 2,
+            speedY: props.spawnY === 'bottom' ? -(Math.random() * 3 + 1) : Math.random() * 4 + 2,
             angle: Math.random() * 6.28,
-            spin: Math.random() * 0.2 - 0.1
+            spin: Math.random() * 0.2 - 0.1,
+            shape: props.shape || 'rect'
         }));
         if (!this.isActive) this.animate();
+    },
+
+    getThemeProps(theme) {
+        const themes = {
+            forest: { colors: ["#2d6a4f", "#40916c", "#74c69d"], minSize: 6, maxSize: 10, shape: 'leaf' },
+            space: { colors: ["#fff", "#ffd700", "#ff00ff"], minSize: 2, maxSize: 5, shape: 'star' },
+            candy: { colors: ["#ff4081", "#ffeb3b", "#00e5ff", "#76ff03"], minSize: 5, maxSize: 12, shape: 'rect' },
+            ocean: { colors: ["#caf0f8", "#90e0ef", "#00b4d8"], minSize: 8, maxSize: 15, shape: 'circle', spawnY: 'bottom' },
+            retro: { colors: ["#39ff14", "#ff00ff", "#00ffff"], minSize: 8, maxSize: 12, shape: 'rect' },
+            winter: { colors: ["#fff", "#f0f8ff", "#caf0f8"], minSize: 4, maxSize: 8, shape: 'circle' },
+            desert: { colors: ["#e85d04", "#ffba08", "#6a040f"], minSize: 4, maxSize: 7, shape: 'rect' }
+        };
+        return themes[theme] || themes.forest;
     },
 
     animate() {
@@ -101,22 +124,60 @@ const VisualManager = {
         this.isActive = true;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
-        // Loop backwards for safe splicing
         for (let i = this.particles.length - 1; i >= 0; i--) {
             const p = this.particles[i];
-            p.y += p.speed;
+            p.x += p.speedX;
+            p.y += p.speedY;
             p.angle += p.spin;
             
             this.ctx.save();
             this.ctx.translate(p.x, p.y);
             this.ctx.rotate(p.angle);
             this.ctx.fillStyle = p.color;
-            this.ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+            
+            if (p.shape === 'circle') {
+                this.ctx.beginPath();
+                this.ctx.arc(0, 0, p.size/2, 0, Math.PI * 2);
+                this.ctx.fill();
+            } else if (p.shape === 'star') {
+                this.drawStar(0, 0, 5, p.size, p.size/2);
+            } else if (p.shape === 'leaf') {
+                this.ctx.beginPath();
+                this.ctx.ellipse(0, 0, p.size, p.size/2, 0, 0, Math.PI * 2);
+                this.ctx.fill();
+            } else {
+                this.ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+            }
+            
             this.ctx.restore();
 
-            if (p.y > this.canvas.height) this.particles.splice(i, 1);
+            if (p.y > this.canvas.height + 50 || p.y < -50) this.particles.splice(i, 1);
         }
         requestAnimationFrame(() => this.animate());
+    },
+
+    drawStar(cx, cy, spikes, outerRadius, innerRadius) {
+        let rot = Math.PI / 2 * 3;
+        let x = cx;
+        let y = cy;
+        let step = Math.PI / spikes;
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(cx, cy - outerRadius);
+        for (let i = 0; i < spikes; i++) {
+            x = cx + Math.cos(rot) * outerRadius;
+            y = cy + Math.sin(rot) * outerRadius;
+            this.ctx.lineTo(x, y);
+            rot += step;
+
+            x = cx + Math.cos(rot) * innerRadius;
+            y = cy + Math.sin(rot) * innerRadius;
+            this.ctx.lineTo(x, y);
+            rot += step;
+        }
+        this.ctx.lineTo(cx, cy - outerRadius);
+        this.ctx.closePath();
+        this.ctx.fill();
     }
 };
 
@@ -131,6 +192,7 @@ const Game = {
         levelIndex: 0,
         score: 0,
         combo: 0,
+        lives: CONFIG.INITIAL_LIVES,
         canClick: true,
         currentTheme: 'forest',
         levels: []
@@ -153,8 +215,11 @@ const Game = {
         this.state.score = 0;
         this.state.combo = 0;
         this.state.levelIndex = 0;
+        this.state.lives = CONFIG.INITIAL_LIVES;
         this.state.levels = this.generateLevels();
         this.elements.endScreen.style.display = 'none';
+        this.elements.gameOverScreen.style.display = 'none';
+        this.updateHearts();
         this.loadLevel();
     },
 
@@ -168,10 +233,13 @@ const Game = {
             level: document.getElementById('level-indicator'),
             badge: document.getElementById('combo-badge'),
             endScreen: document.getElementById('end-screen'),
+            gameOverScreen: document.getElementById('game-over-screen'),
             finalScore: document.getElementById('final-score'),
+            failScore: document.getElementById('fail-score'),
             themeBtns: document.querySelectorAll('.theme-btn'),
-            restartBtn: document.querySelector('.restart-btn'),
-            progress: document.getElementById('progress-fill')
+            restartBtns: document.querySelectorAll('.restart-btn'),
+            progress: document.getElementById('progress-fill'),
+            lives: document.getElementById('lives-container')
         };
     },
 
@@ -179,7 +247,9 @@ const Game = {
         this.elements.themeBtns.forEach(btn => {
             btn.onclick = () => this.setTheme(btn.dataset.theme);
         });
-        this.elements.restartBtn.onclick = () => this.init();
+        this.elements.restartBtns.forEach(btn => {
+            btn.onclick = () => this.init();
+        });
     },
 
     setTheme(key) {
@@ -232,7 +302,6 @@ const Game = {
         this.elements.score.textContent = `Score: ${this.state.score}`;
         this.elements.level.textContent = `Level: ${this.state.levelIndex + 1}/${this.state.levels.length}`;
         
-        // Update progress bar
         const progress = ((this.state.levelIndex) / CONFIG.TOTAL_LEVELS) * 100;
         this.elements.progress.style.width = `${progress}%`;
 
@@ -258,6 +327,12 @@ const Game = {
         });
     },
 
+    updateHearts() {
+        this.elements.lives.innerHTML = Array.from({length: CONFIG.INITIAL_LIVES}, (_, i) => 
+            `<span class="heart ${i >= this.state.lives ? 'lost' : ''}">❤️</span>`
+        ).join('');
+    },
+
     handleChoice(selected, correct, btn) {
         if (!this.state.canClick) return;
         
@@ -281,10 +356,18 @@ const Game = {
             }, CONFIG.FEEDBACK_DURATION);
         } else {
             this.state.combo = 0;
+            this.state.lives--;
+            this.updateHearts();
+            
             AudioManager.playError();
             btn.classList.add('wrong');
             this.showFeedback('Try again!', 'var(--error)');
-            setTimeout(() => btn.classList.remove('wrong'), 400);
+            
+            if (this.state.lives <= 0) {
+                setTimeout(() => this.showGameOver(), 500);
+            } else {
+                setTimeout(() => btn.classList.remove('wrong'), 400);
+            }
         }
         this.elements.score.textContent = `Score: ${this.state.score}`;
     },
@@ -300,9 +383,15 @@ const Game = {
 
     showVictory() {
         AudioManager.playVictory();
-        VisualManager.createConfetti();
+        VisualManager.createParticles(this.state.currentTheme);
         this.elements.finalScore.textContent = `Final Score: ${this.state.score}`;
         this.elements.endScreen.style.display = 'flex';
+    },
+
+    showGameOver() {
+        AudioManager.playGameOver();
+        this.elements.failScore.textContent = `Score: ${this.state.score}`;
+        this.elements.gameOverScreen.style.display = 'flex';
     }
 };
 

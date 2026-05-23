@@ -32,12 +32,13 @@
 
         <div id="stats">
             <span id="score-text">Score: 0</span>
+            <div id="lives-container"></div>
             <span class="boss-text">⚠️ BOSS LEVEL ⚠️</span>
             <span id="level-indicator">Level: 1/15</span>
         </div>
-        
+
         <h1 id="instruction">What comes next?</h1>
-        
+
         <div id="pattern-display"></div>
         <div id="choices-container"></div>
         <div id="feedback-message"></div>
@@ -48,10 +49,17 @@
             <h2 id="final-score" style="font-size: 2.5rem; color: var(--secondary);">Final Score: 0</h2>
             <button class="restart-btn">Play Again</button>
         </div>
-    </div>
 
-    <footer id="game-footer">
-        Pattern Explorer Pro | v1.3.0
-    </footer>
+        <div id="game-over-screen" class="overlay-screen">
+            <h1 style="font-size: 3.5rem; margin: 0;">💔 GAME OVER 💔</h1>
+            <p style="font-size: 1.6rem; opacity: 0.8;">Don't give up!</p>
+            <h2 id="fail-score" style="font-size: 2.5rem; color: var(--error);">Score: 0</h2>
+            <button class="restart-btn">Try Again</button>
+        </div>
+        </div>
+
+        <footer id="game-footer">
+        Pattern Explorer Pro | v1.4.0
+        </footer>
 </body>
 </html>

@@ -271,17 +271,41 @@ body {
     font-weight: 700;
 }
 
-#end-screen {
+#end-screen, #game-over-screen {
     display: none;
     position: absolute;
     inset: 0;
     background: var(--card);
-    z-index: 10;
+    z-index: 100;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 24px;
     padding: 20px;
+    animation: item-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+#lives-container {
+    display: flex;
+    gap: 5px;
+    font-size: 1.4rem;
+}
+
+.heart {
+    display: inline-block;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+    animation: heart-beat 1.5s infinite ease-in-out;
+}
+
+@keyframes heart-beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+.heart.lost {
+    filter: grayscale(1) opacity(0.3);
+    animation: none;
+    transform: scale(0.9);
 }
 
 canvas#confetti-canvas {
