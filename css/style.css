@@ -19,6 +19,27 @@ body.theme-candy {
     --card: #ffffff; --text: #880e4f; --accent: #f06292;
 }
 
+body.theme-ocean {
+    --primary: #0077b6; --secondary: #f0a500; --bg: #caf0f8;
+    --card: #fdfdfd; --text: #03045e; --accent: #0096c7;
+}
+
+body.theme-retro {
+    --primary: #39ff14; --secondary: #ff00ff; --bg: #000000;
+    --card: #111111; --text: #39ff14; --accent: #ff00ff;
+    --shadow: rgba(57, 255, 20, 0.2);
+}
+
+body.theme-winter {
+    --primary: #48cae4; --secondary: #90e0ef; --bg: #f8f9fa;
+    --card: #ffffff; --text: #0077b6; --accent: #00b4d8;
+}
+
+body.theme-desert {
+    --primary: #e85d04; --secondary: #ffba08; --bg: #fefae0;
+    --card: #ffffff; --text: #370617; --accent: #faa307;
+}
+
 body {
     font-family: 'Segoe UI', Roboto, sans-serif;
     display: flex;
@@ -27,7 +48,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     margin: 0;
-    padding-bottom: 60px; /* Space for fixed footer */
+    padding-bottom: 80px; /* Space for fixed footer */
     background-color: var(--bg);
     color: var(--text);
     transition: all 0.5s ease;
@@ -39,11 +60,11 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 15px 0;
+    padding: 12px 0;
     background: var(--card);
     border-top: 1px solid rgba(0,0,0,0.05);
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     opacity: 0.7;
     z-index: 5;
@@ -61,18 +82,18 @@ body {
     position: relative;
     z-index: 2;
     overflow: visible;
-    margin-top: 80px; /* Increased slightly for labeled progress bar */
+    margin-top: 100px; /* Increased for theme wrap */
 }
 
 #progress-wrapper {
     position: absolute;
-    top: -55px; /* Same height as theme-selector */
+    top: -55px;
     left: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
-    width: 200px; /* Fixed width for progress area */
+    width: 200px;
 }
 
 #progress-label {
@@ -102,22 +123,25 @@ body {
 
 .theme-selector {
     position: absolute;
-    top: -55px; /* Back to original position above box */
+    top: -95px; /* Higher for wrapping */
     right: 0;
     display: flex;
-    gap: 12px;
+    gap: 8px;
     z-index: 10;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 100%;
 }
 
 .theme-btn {
     border: none;
-    border-radius: 12px;
-    padding: 8px 16px;
+    border-radius: 8px;
+    padding: 6px 12px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: bold;
     transition: all 0.2s;
-    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    box-shadow: 0 3px 0 rgba(0,0,0,0.1);
 }
 
 .theme-btn:hover { transform: translateY(-2px); }

@@ -139,7 +139,11 @@ const Game = {
     themes: {
         forest: { emojis: ["🐻", "🦊", "🦁", "🍎", "🌳", "🍄", "🥕", "🍓", "🦉", "🌲"], class: 'theme-forest' },
         space: { emojis: ["🚀", "🪐", "👽", "⭐", "🛰️", "🛸", "☄️", "🌙", "🌍", "👾"], class: 'theme-space' },
-        candy: { emojis: ["🍭", "🍬", "🍦", "🍩", "🍪", "🍰", "🧁", "🍫", "🍯", "🍮"], class: 'theme-candy' }
+        candy: { emojis: ["🍭", "🍬", "🍦", "🍩", "🍪", "🍰", "🧁", "🍫", "🍯", "🍮"], class: 'theme-candy' },
+        ocean: { emojis: ["🐙", "🐬", "🦈", "🐚", "🦀", "🐳", "🐡", "🌊", "⚓", "🏝️"], class: 'theme-ocean' },
+        retro: { emojis: ["👾", "🕹️", "📺", "💿", "🎮", "⌨️", "📠", "🔋", "🔌", "💾"], class: 'theme-retro' },
+        winter: { emojis: ["❄️", "🐧", "⛄", "🏔️", "🐻‍❄️", "⛸️", "🧣", "🧤", "🦌", "🌨️"], class: 'theme-winter' },
+        desert: { emojis: ["🏜️", "🐫", "🌵", "☀️", "🦎", "🦂", "🐍", "🏺", "⛺", "🌅"], class: 'theme-desert' }
     },
 
     init() {
