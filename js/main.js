@@ -121,6 +121,7 @@ const VisualManager = {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             return;
         }
+        
         this.isActive = true;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
@@ -151,9 +152,16 @@ const VisualManager = {
             
             this.ctx.restore();
 
-            if (p.y > this.canvas.height + 50 || p.y < -50) this.particles.splice(i, 1);
+            if (p.y > this.canvas.height + 50 || p.y < -50 || p.x > this.canvas.width + 50 || p.x < -50) {
+                this.particles.splice(i, 1);
+            }
         }
-        requestAnimationFrame(() => this.animate());
+
+        if (this.particles.length > 0) {
+            requestAnimationFrame(() => this.animate());
+        } else {
+            this.isActive = false;
+        }
     },
 
     drawStar(cx, cy, spikes, outerRadius, innerRadius) {
@@ -255,29 +263,51 @@ const Game = {
     setTheme(key) {
         this.state.currentTheme = key;
         document.body.className = this.themes[key].class;
-        if (this.state.levelIndex === 0) this.init();
-        else this.loadLevel();
+        this.state.levels = this.generateLevels();
+        this.loadLevel();
     },
 
     generateLevels() {
         const emojis = this.themes[this.state.currentTheme].emojis;
         return Array.from({length: CONFIG.TOTAL_LEVELS}, (_, i) => {
             const isBoss = (i + 1) % 5 === 0;
-            const [a, b, c] = [...emojis].sort(() => Math.random() - 0.5);
+            const pool = [...emojis].sort(() => Math.random() - 0.5);
+            const [a, b, c] = pool;
 
             if (isBoss) {
-                if (Math.random() > 0.5) {
-                    return { pattern: [a, b, a, a, b, b, a, a, a], answer: b, isBoss: true };
-                } else {
-                    return { pattern: [a, b, c, c, a, b, c, c], answer: a, isBoss: true };
-                }
+                const bossTypes = [
+                    { pattern: [a, b, a, a, b, b, a, a, a], answer: b },
+                    { pattern: [a, b, c, c, a, b, c, c], answer: a },
+                    { pattern: [a, b, c, b, a, a, b, c], answer: b },
+                    { pattern: [a, a, b, b, c, c, a, a], answer: b }
+                ];
+                const boss = bossTypes[Math.floor(Math.random() * bossTypes.length)];
+                return { ...boss, isBoss: true };
             }
 
-            if (i < 4) return { pattern: [a, b, a, b], answer: a };
-            if (i < 8) return { pattern: [a, b, b, a, b], answer: b };
-            return Math.random() > 0.5 
-                ? { pattern: [a, a, b, a, a], answer: b }
-                : { pattern: [a, b, c, a, b], answer: c };
+            // Difficulty tiers
+            if (i < 4) { // Basic
+                const types = [
+                    { pattern: [a, b, a, b], answer: a },
+                    { pattern: [b, a, b, a], answer: b },
+                    { pattern: [a, a, b, b, a, a], answer: b }
+                ];
+                return types[Math.floor(Math.random() * types.length)];
+            } else if (i < 9) { // Intermediate
+                const types = [
+                    { pattern: [a, b, b, a, b], answer: b },
+                    { pattern: [a, b, c, a, b], answer: c },
+                    { pattern: [a, a, b, a, a, b], answer: a }
+                ];
+                return types[Math.floor(Math.random() * types.length)];
+            } else { // Hard
+                const types = [
+                    { pattern: [a, a, b, b, a, a, b], answer: b },
+                    { pattern: [a, b, c, c, b, a], answer: a },
+                    { pattern: [a, b, a, c, a, b, a], answer: c }
+                ];
+                return types[Math.floor(Math.random() * types.length)];
+            }
         });
     },
 
@@ -322,6 +352,7 @@ const Game = {
             const btn = document.createElement('button');
             btn.className = 'choice-button';
             btn.textContent = emoji;
+            btn.setAttribute('aria-label', `Select ${emoji}`);
             btn.onclick = (e) => this.handleChoice(emoji, level.answer, e.target);
             this.elements.choices.appendChild(btn);
         });
@@ -335,9 +366,9 @@ const Game = {
 
     handleChoice(selected, correct, btn) {
         if (!this.state.canClick) return;
+        this.state.canClick = false; // Disable immediately to prevent spam
         
         if (selected === correct) {
-            this.state.canClick = false;
             this.state.combo++;
             const points = CONFIG.BASE_SCORE + (this.state.combo > 1 ? this.state.combo * CONFIG.COMBO_BONUS : 0);
             this.state.score += points;
@@ -364,9 +395,15 @@ const Game = {
             this.showFeedback('Try again!', 'var(--error)');
             
             if (this.state.lives <= 0) {
-                setTimeout(() => this.showGameOver(), 500);
+                setTimeout(() => {
+                    btn.classList.remove('wrong');
+                    this.showGameOver();
+                }, 500);
             } else {
-                setTimeout(() => btn.classList.remove('wrong'), 400);
+                setTimeout(() => {
+                    btn.classList.remove('wrong');
+                    this.state.canClick = true; // Re-enable for retry
+                }, 400);
             }
         }
         this.elements.score.textContent = `Score: ${this.state.score}`;

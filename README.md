@@ -44,5 +44,5 @@ patterns/
 - **Security:** Pre-configured `.gitignore` for safe Git publication.
 
 ---
-**Version:** 1.0.0
+**Version:** 1.4.0
 **Date:** May 2026
