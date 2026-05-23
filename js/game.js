@@ -259,6 +259,9 @@ export const Game = {
     },
 
     showVictory() {
+        if (this.elements.progress) {
+            this.elements.progress.style.width = '100%';
+        }
         AudioManager.playVictory();
         VisualManager.createParticles(this.state.currentTheme);
         this.elements.finalScore.textContent = `Final Score: ${this.state.score}`;
