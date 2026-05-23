@@ -73,12 +73,15 @@ const VisualManager = {
     ctx: null,
     particles: [],
     isActive: false,
+    isSetup: false,
 
     init() {
+        if (this.isSetup) return;
         this.canvas = document.getElementById('confetti-canvas');
         this.ctx = this.canvas.getContext('2d');
         window.addEventListener('resize', () => this.resize());
         this.resize();
+        this.isSetup = true;
     },
 
     resize() {
@@ -216,10 +219,14 @@ const Game = {
         desert: { emojis: ["🏜️", "🐫", "🌵", "☀️", "🦎", "🦂", "🐍", "🏺", "⛺", "🌅"], class: 'theme-desert' }
     },
 
-    init() {
+    boot() {
         this.cacheElements();
         this.attachEventListeners();
         VisualManager.init();
+        this.startGame();
+    },
+
+    startGame() {
         this.state.score = 0;
         this.state.combo = 0;
         this.state.levelIndex = 0;
@@ -260,7 +267,7 @@ const Game = {
             btn.onclick = () => this.setTheme(btn.dataset.theme);
         });
         this.elements.restartBtns.forEach(btn => {
-            btn.onclick = () => this.init();
+            btn.onclick = () => this.startGame();
         });
         
         // Drawer toggle
@@ -284,6 +291,7 @@ const Game = {
     setTheme(key) {
         this.state.currentTheme = key;
         document.body.className = `theme-${key}`;
+        // Always regenerate levels so emojis match the new theme
         this.state.levels = this.generateLevels();
         this.toggleDrawer(false); // Close drawer after selection
         this.loadLevel();
@@ -455,4 +463,4 @@ const Game = {
 };
 
 // Boot
-window.onload = () => Game.init();
+window.onload = () => Game.boot();

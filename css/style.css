@@ -224,18 +224,22 @@ body {
 #level-indicator { background: rgba(0,0,0,0.06); padding: 6px 16px; border-radius: 99px; font-size: 0.95rem; font-weight: 800; }
 
 .boss-text {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
     color: var(--secondary);
     font-family: 'Baloo 2', sans-serif;
     font-weight: 900;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 3px;
-    animation: pulse 1s infinite alternate;
     margin: 10px 0;
+    transition: opacity 0.3s;
 }
 
-#game-container.boss-level .boss-text { display: block; }
+#game-container.boss-level .boss-text {
+    opacity: 1;
+    animation: pulse 1s infinite alternate;
+}
 
 /* ── PATTERN DISPLAY ── */
 #pattern-display {
