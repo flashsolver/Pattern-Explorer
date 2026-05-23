@@ -133,3 +133,6 @@ dist/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# Antigravity CLI state
+.antigravitycli/

@@ -33,6 +33,29 @@ patterns/
 └── assets/            # Empty placeholder for future assets
 ```
 
+## 🚀 Running Locally
+
+Because this game is built using modern **ES Modules** (`type="module"`), running it directly by double-clicking `index.html` (using the `file://` protocol) will trigger browser CORS security blocks. You **must** run the game using a local development server.
+
+Choose one of the options below to serve the files:
+
+### Option A: Using Node.js (Recommended)
+If you have **Node.js** installed, run the following in your terminal inside the project directory:
+```bash
+npx http-server -p 8080
+```
+Then, open **[http://localhost:8080](http://localhost:8080)** in your browser.
+
+### Option B: Using Python
+If you have **Python** installed, run the following in your terminal inside the project directory:
+```bash
+python -m http.server 8000
+```
+Then, open **[http://localhost:8000](http://localhost:8000)** in your browser.
+
+### Option C: VS Code Live Server
+If you use VS Code, install the **Live Server** extension, right-click `index.html`, and select **Open with Live Server**.
+
 ## 🎮 How to Play
 
 1. Observe the pattern sequence displayed in the center card.
