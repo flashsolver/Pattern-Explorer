@@ -153,22 +153,52 @@ body {
 #combo-badge.active { transform: translateX(-50%) scale(1); }
 
 #pattern-display {
-    font-size: 3.5rem;
-    padding: 25px;
+    padding: 20px;
     margin: 20px 0;
     background-color: rgba(0,0,0,0.03);
     border-radius: 20px;
-    border: 4px dashed var(--accent);
-    min-height: 1.2em;
+    border: 3px dashed var(--accent);
+    min-height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     flex-wrap: wrap;
+}
+
+.pattern-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    background: var(--bg);
+    width: 65px;
+    height: 65px;
+    border-radius: 15px;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    user-select: none;
+}
+
+.pattern-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.8rem;
+    background: var(--bg);
+    width: 75px;
+    height: 75px;
+    border-radius: 18px;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    user-select: none;
+    flex-shrink: 0;
 }
 
 .question-mark {
     color: var(--secondary);
+    background: var(--card);
+    border: 2px solid var(--secondary);
     animation: pulse 1.5s infinite;
 }
 
@@ -272,9 +302,13 @@ canvas#confetti-canvas {
     display: block;
 }
 
-.pattern-item {
-    display: inline-block;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.pattern-item.appear {
+    animation: item-pop 0.4s forwards;
+}
+
+@keyframes item-pop {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 /* --- RESPONSIVE DESIGN --- */
@@ -282,7 +316,7 @@ canvas#confetti-canvas {
 @media (max-width: 600px) {
     #game-container {
         width: 95%;
-        padding: 20px;
+        padding: 15px;
         margin-top: 130px; /* Increased to fit stacked header */
     }
 
@@ -313,14 +347,24 @@ canvas#confetti-canvas {
     }
 
     #pattern-display {
+        padding: 10px;
+        gap: 10px;
+        min-height: 140px;
+    }
+
+    .pattern-item {
+        width: 60px;
+        height: 60px;
         font-size: 2.2rem;
-        padding: 15px;
-        gap: 8px;
+        border-radius: 12px;
+        box-shadow: 0 3px 0 rgba(0,0,0,0.1);
+        flex-shrink: 0;
     }
 
     .choice-button {
-        font-size: 2.5rem;
-        padding: 10px 18px;
+        font-size: 2.2rem;
+        padding: 12px 20px;
+        border-radius: 15px;
     }
 
     #stats {
@@ -339,11 +383,13 @@ canvas#confetti-canvas {
 }
 
 @media (max-width: 400px) {
-    #pattern-display {
-        font-size: 1.8rem;
+    .pattern-item {
+        width: 54px;
+        height: 54px;
+        font-size: 2rem;
     }
     
-    .choice-button {
-        font-size: 2rem;
+    #pattern-display {
+        gap: 6px;
     }
 }
