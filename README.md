@@ -15,13 +15,14 @@ A fun and interactive pattern-matching game where players predict the next item 
 
 ```text
 patterns/
-├── index.html          # Main entry point
+├── .gitignore          # Git security and exclusion rules
+├── index.html          # Main structure (No inline scripts)
 ├── README.md           # Project documentation
 ├── css/
-│   └── style.css       # Visual styling and animations
+│   └── style.css       # Visual styling and custom animations
 ├── js/
-│   └── main.js        # Game engine and managers
-└── assets/            # Future resources (images, sounds, etc.)
+│   └── main.js        # Refactored game engine and managers
+└── assets/            # Empty placeholder for future assets
 ```
 
 ## 🎮 How to Play
@@ -34,10 +35,13 @@ patterns/
 
 ## 🛠️ Technical Details
 
-- **Vanilla JS:** No external frameworks used.
-- **Web Audio API:** Procedural sounds generated in real-time.
-- **CSS Grid/Flexbox:** Responsive layout for various screen sizes.
-- **Canvas API:** High-performance particle system for confetti.
+- **Vanilla JS (ES6+):** Refactored for modularity with specialized managers.
+- **Centralized Config:** All gameplay constants (scores, timing) are managed via a `CONFIG` object.
+- **Performance Optimized:** Implements DOM element caching and efficient particle loop management.
+- **Web Audio API:** High-fidelity procedural sounds generated in real-time.
+- **Canvas API:** High-performance particle system for confetti effects.
+- **CSS Variables:** Dynamic theme switching using CSS custom properties.
+- **Security:** Pre-configured `.gitignore` for safe Git publication.
 
 ---
 **Version:** 1.0.0
