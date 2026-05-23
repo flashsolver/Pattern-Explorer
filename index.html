@@ -10,7 +10,14 @@
 <body class="theme-forest">
     <canvas id="confetti-canvas"></canvas>
 
-    <div id="game-container">
+    <div id="game-header">
+        <div id="progress-wrapper">
+            <span id="progress-label">Progress</span>
+            <div id="progress-container">
+                <div id="progress-fill"></div>
+            </div>
+        </div>
+
         <div class="theme-selector">
             <button class="theme-btn" data-theme="forest" style="background: #2d6a4f; color: #fff;">Forest</button>
             <button class="theme-btn" data-theme="space" style="background: #9c27b0; color: #fff;">Space</button>
@@ -20,14 +27,9 @@
             <button class="theme-btn" data-theme="winter" style="background: #48cae4; color: #fff;">Winter</button>
             <button class="theme-btn" data-theme="desert" style="background: #e85d04; color: #fff;">Desert</button>
         </div>
+    </div>
 
-        <div id="progress-wrapper">
-            <span id="progress-label">Progress</span>
-            <div id="progress-container">
-                <div id="progress-fill"></div>
-            </div>
-        </div>
-
+    <div id="game-container">
         <div id="combo-badge">Combo x2!</div>
 
         <div id="stats">
