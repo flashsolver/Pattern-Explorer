@@ -1,0 +1,65 @@
+/* ============================================================
+   PATTERN EXPLORER PRO — variables.css
+   ============================================================ */
+
+/* ── BASE CSS VARIABLES (Forest theme) ── */
+:root {
+    --primary:   #2d6a4f;
+    --secondary: #9c6644;
+    --bg:        #dde5b6;
+    --card:      #fefae0;
+    --text: #1b4332;
+    --error: #bc4749;
+    --accent: #606c38;
+    --shadow: rgba(27, 67, 50, 0.18);
+    --btn-text: #ffffff;
+    --progress-glow: rgba(45, 106, 79, 0.5);
+    --pattern-bg: rgba(0,0,0,0.04);
+    --border-style: dashed;
+}
+
+body.theme-space {
+    --primary:   #7b2ff7;
+    --secondary: #f72585;
+    --bg:        #0d0d1a;
+    --card:      #13132b;
+    --text:      #cce7ff;
+    --error:     #ff4d6d;
+    --accent:    #3a0ca3;
+    --shadow:    rgba(123, 47, 247, 0.35);
+    --btn-text:  #ffffff;
+    --progress-glow: rgba(123, 47, 247, 0.6);
+    --pattern-bg: rgba(255,255,255,0.04);
+    --border-style: solid;
+}
+
+body.theme-candy {
+    --primary:   #e91e8c;
+    --secondary: #ffbe0b;
+    --bg:        #fff0f5;
+    --card:      #ffffff;
+    --text:      #7b1450;
+    --error:     #e63946;
+    --accent:    #fb5607;
+    --shadow:    rgba(233, 30, 140, 0.18);
+    --btn-text:  #ffffff;
+    --progress-glow: rgba(233, 30, 140, 0.45);
+    --pattern-bg: rgba(233,30,140,0.04);
+    --border-style: dashed;
+}
+
+body.theme-ocean {
+    --primary: #0077b6; --secondary: #f0a500; --bg: #b8e8f5; --card: #f0faff; --text: #03045e; --error: #e63946; --accent: #0096c7; --shadow: rgba(0, 119, 182, 0.2); --btn-text: #ffffff; --progress-glow: rgba(0, 119, 182, 0.5); --pattern-bg: rgba(0,0,0,0.04); --border-style: solid;
+}
+
+body.theme-retro {
+    --primary: #39ff14; --secondary: #ff00ff; --bg: #050505; --card: #0e0e0e; --text: #39ff14; --error: #ff3131; --accent: #ff00ff; --shadow: rgba(57, 255, 20, 0.25); --btn-text: #000000; --progress-glow: rgba(57, 255, 20, 0.6); --pattern-bg: rgba(57,255,20,0.04); --border-style: solid;
+}
+
+body.theme-winter {
+    --primary: #2196f3; --secondary: #90e0ef; --bg: #e8f4fd; --card: #ffffff; --text: #023e8a; --error: #e63946; --accent: #0096c7; --shadow: rgba(33, 150, 243, 0.15); --btn-text: #ffffff; --progress-glow: rgba(33, 150, 243, 0.4); --pattern-bg: rgba(33,150,243,0.05); --border-style: dashed;
+}
+
+body.theme-desert {
+    --primary: #e85d04; --secondary: #ffba08; --bg: #f9e4c8; --card: #fffbf2; --text: #370617; --error: #9d0208; --accent: #dc2f02; --shadow: rgba(232, 93, 4, 0.2); --btn-text: #ffffff; --progress-glow: rgba(232, 93, 4, 0.45); --pattern-bg: rgba(232,93,4,0.05); --border-style: dashed;
+}

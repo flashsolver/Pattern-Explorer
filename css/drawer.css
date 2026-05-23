@@ -1,0 +1,109 @@
+/* ============================================================
+   PATTERN EXPLORER PRO — drawer.css
+   ============================================================ */
+
+/* ── DRAWER & OVERLAYS ── */
+#settings-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100vh;
+    background: var(--card);
+    z-index: 1000;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: translateX(100%);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 24px;
+}
+
+#settings-drawer.open { transform: translateX(0); }
+
+#drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+#drawer-overlay.visible { opacity: 1; pointer-events: auto; }
+
+.drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+}
+
+.drawer-header h2 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.7rem;
+    color: var(--primary);
+    margin: 0;
+}
+
+#drawer-close {
+    background: none;
+    border: none;
+    font-size: 3rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--text);
+    opacity: 0.4;
+    transition: opacity 0.2s;
+    padding: 0 10px;
+}
+
+#drawer-close:hover { opacity: 1; }
+
+.theme-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.theme-option {
+    display: flex;
+    align-items: center;
+    padding: 15px 18px;
+    background: rgba(0,0,0,0.03);
+    border: 2px solid transparent;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--text);
+    width: 100%;
+}
+
+.theme-option:hover { background: rgba(0,0,0,0.06); }
+.theme-option.active {
+    border-color: var(--primary);
+    background: var(--bg);
+}
+
+/* ── MOBILE DRAWER OVERRIDES ── */
+@media (max-width: 600px) {
+    #settings-drawer { 
+        width: 280px; 
+        padding: 25px 20px;
+    }
+    
+    .theme-option { padding: 12px 15px; font-size: 1.05rem; }
+}
+
+@media (max-width: 350px) {
+    #settings-drawer { width: 100%; }
+}

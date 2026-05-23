@@ -18,12 +18,18 @@ A fun and interactive pattern-matching game where players predict the next item 
 ```text
 patterns/
 ├── .gitignore          # Git security and exclusion rules
-├── index.html          # Main structure (No inline scripts)
+├── index.html          # Main structure (ES Module entry)
 ├── README.md           # Project documentation
 ├── css/
-│   └── style.css       # Visual styling and custom animations
+│   ├── style.css       # Main entry stylesheet importing modules
+│   ├── variables.css   # Color schemes for all 7 themes
+│   └── drawer.css      # Styling for settings drawer and mobile overrides
 ├── js/
-│   └── main.js        # Refactored game engine and managers
+│   ├── main.js         # Entry script importing Game
+│   ├── game.js         # Core gameplay logic and levels orchestrator
+│   ├── config.js       # Game configuration and constants
+│   ├── audio.js        # Procedural Audio Synthesizer (try-catch safe)
+│   └── visuals.js      # Procedural Canvas Particle manager
 └── assets/            # Empty placeholder for future assets
 ```
 
@@ -46,5 +52,5 @@ patterns/
 - **Security:** Pre-configured `.gitignore` for safe Git publication.
 
 ---
-**Version:** 1.5.1
+**Version:** 1.6.0
 **Date:** May 2026
