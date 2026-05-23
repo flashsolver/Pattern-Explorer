@@ -11,14 +11,17 @@
     <canvas id="confetti-canvas"></canvas>
 
     <div id="game-container">
-        <div id="progress-container">
-            <div id="progress-fill"></div>
-        </div>
-
         <div class="theme-selector">
             <button class="theme-btn" data-theme="forest" style="background: #4caf50; color: #fff;">Forest</button>
             <button class="theme-btn" data-theme="space" style="background: #9c27b0; color: #fff;">Space</button>
             <button class="theme-btn" data-theme="candy" style="background: #ff4081; color: #fff;">Candy</button>
+        </div>
+
+        <div id="progress-wrapper">
+            <span id="progress-label">Progress</span>
+            <div id="progress-container">
+                <div id="progress-fill"></div>
+            </div>
         </div>
 
         <div id="combo-badge">Combo x2!</div>
@@ -44,7 +47,7 @@
     </div>
 
     <footer id="game-footer">
-        Pattern Explorer Pro | v1.0.0
+        Pattern Explorer Pro | v1.1.0
     </footer>
 </body>
 </html>
