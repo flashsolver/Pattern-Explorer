@@ -166,7 +166,8 @@ const Game = {
             endScreen: document.getElementById('end-screen'),
             finalScore: document.getElementById('final-score'),
             themeBtns: document.querySelectorAll('.theme-btn'),
-            restartBtn: document.querySelector('.restart-btn')
+            restartBtn: document.querySelector('.restart-btn'),
+            progress: document.getElementById('progress-fill')
         };
     },
 
@@ -226,6 +227,10 @@ const Game = {
         this.elements.feedback.textContent = '';
         this.elements.score.textContent = `Score: ${this.state.score}`;
         this.elements.level.textContent = `Level: ${this.state.levelIndex + 1}/${this.state.levels.length}`;
+        
+        // Update progress bar
+        const progress = ((this.state.levelIndex) / CONFIG.TOTAL_LEVELS) * 100;
+        this.elements.progress.style.width = `${progress}%`;
 
         this.elements.display.innerHTML = level.pattern
             .map((item, idx) => `<span class="pattern-item appear" style="animation-delay: ${idx * CONFIG.ANIMATION_DELAY}s">${item}</span>`)
