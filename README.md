@@ -1,6 +1,7 @@
 # Pattern Explorer Pro
 
 A fun and interactive pattern-matching game where players predict the next item in a sequence. Built with a focus on polished visuals, smooth animations, and engaging feedback.
+[![Play Live](https://img.shields.io/badge/Play_Live-Pattern_Explorer-2d6a4f?style=for-the-badge&logo=github)](https://flashsolver.github.io/Pattern-Explorer/)
 
 ## 🌟 Features
 
@@ -44,5 +45,5 @@ patterns/
 - **Security:** Pre-configured `.gitignore` for safe Git publication.
 
 ---
-**Version:** 1.4.0
+**Version:** 1.5.1
 **Date:** May 2026
