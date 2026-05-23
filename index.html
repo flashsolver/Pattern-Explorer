@@ -2,42 +2,81 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Pattern Explorer Pro</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/main.js" defer></script>
 </head>
 <body class="theme-forest">
+
     <canvas id="confetti-canvas"></canvas>
 
-    <div id="game-header">
+    <!-- TOP NAVIGATION: hamburger only -->
+    <nav id="top-nav">
+        <button id="drawer-toggle" aria-label="Open Themes">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+    </nav>
+
+    <!-- PROGRESS ROW: directly above the game -->
+    <div id="progress-row">
         <div id="progress-wrapper">
             <span id="progress-label">Progress</span>
             <div id="progress-container">
                 <div id="progress-fill"></div>
             </div>
         </div>
+    </div>
 
-        <div class="theme-selector">
-            <button class="theme-btn" data-theme="forest" style="background: #2d6a4f; color: #fff;">Forest</button>
-            <button class="theme-btn" data-theme="space" style="background: #9c27b0; color: #fff;">Space</button>
-            <button class="theme-btn" data-theme="candy" style="background: #ff4081; color: #fff;">Candy</button>
-            <button class="theme-btn" data-theme="ocean" style="background: #0077b6; color: #fff;">Ocean</button>
-            <button class="theme-btn" data-theme="retro" style="background: #39ff14; color: #000;">Retro</button>
-            <button class="theme-btn" data-theme="winter" style="background: #48cae4; color: #fff;">Winter</button>
-            <button class="theme-btn" data-theme="desert" style="background: #e85d04; color: #fff;">Desert</button>
+    <!-- DRAWER OVERLAY -->
+    <div id="drawer-overlay"></div>
+
+    <!-- SETTINGS DRAWER -->
+    <div id="settings-drawer">
+        <div class="drawer-header">
+            <h2>Choose theme</h2>
+            <button id="drawer-close" aria-label="Close Drawer">&times;</button>
+        </div>
+        <div class="theme-list">
+            <button class="theme-option" data-theme="forest">
+                <span class="name">🌲 Forest</span>
+            </button>
+            <button class="theme-option" data-theme="space">
+                <span class="name">🚀 Space</span>
+            </button>
+            <button class="theme-option" data-theme="candy">
+                <span class="name">🍭 Candy</span>
+            </button>
+            <button class="theme-option" data-theme="ocean">
+                <span class="name">🌊 Ocean</span>
+            </button>
+            <button class="theme-option" data-theme="retro">
+                <span class="name">👾 Retro</span>
+            </button>
+            <button class="theme-option" data-theme="winter">
+                <span class="name">❄️ Winter</span>
+            </button>
+            <button class="theme-option" data-theme="desert">
+                <span class="name">🏜️ Desert</span>
+            </button>
         </div>
     </div>
 
+    <!-- MAIN GAME CARD -->
     <div id="game-container">
+
+        <!-- Combo badge floats above the card -->
         <div id="combo-badge">Combo x2!</div>
 
+        <!-- Score / Lives / Level row -->
         <div id="stats">
             <span id="score-text">Score: 0</span>
             <div id="lives-container"></div>
-            <span class="boss-text">⚠️ BOSS LEVEL ⚠️</span>
             <span id="level-indicator">Level: 1/15</span>
         </div>
+
+        <!-- Boss banner (shown via CSS when .boss-level) -->
+        <div class="boss-text">⚠️ BOSS LEVEL ⚠️</div>
 
         <h1 id="instruction">What comes next?</h1>
 
@@ -45,23 +84,25 @@
         <div id="choices-container"></div>
         <div id="feedback-message"></div>
 
+        <!-- Victory overlay -->
         <div id="end-screen">
-            <h1 style="font-size: 3.5rem; margin: 0;">🌟 VICTORY 🌟</h1>
-            <p style="font-size: 1.6rem; opacity: 0.8;">You're a pattern master!</p>
-            <h2 id="final-score" style="font-size: 2.5rem; color: var(--secondary);">Final Score: 0</h2>
+            <h1 style="font-size:3rem;margin:0;">🌟 VICTORY 🌟</h1>
+            <p style="font-size:1.4rem;opacity:0.75;margin-top:8px;">You're a pattern master!</p>
+            <h2 id="final-score" style="font-size:2.2rem;color:var(--secondary);margin-top:12px;">Final Score: 0</h2>
             <button class="restart-btn">Play Again</button>
         </div>
 
+        <!-- Game Over overlay -->
         <div id="game-over-screen" class="overlay-screen">
-            <h1 style="font-size: 3.5rem; margin: 0;">💔 GAME OVER 💔</h1>
-            <p style="font-size: 1.6rem; opacity: 0.8;">Don't give up!</p>
-            <h2 id="fail-score" style="font-size: 2.5rem; color: var(--error);">Score: 0</h2>
+            <h1 style="font-size:3rem;margin:0;">💔 GAME OVER 💔</h1>
+            <p style="font-size:1.4rem;opacity:0.75;margin-top:8px;">Don't give up!</p>
+            <h2 id="fail-score" style="font-size:2.2rem;color:var(--error);margin-top:12px;">Score: 0</h2>
             <button class="restart-btn">Try Again</button>
         </div>
 
-        <footer id="game-footer">
-            Pattern Explorer Pro | v1.4.0
-        </footer>
-    </div>
+    </div><!-- /#game-container -->
+
+    <footer id="game-footer">Pattern Explorer Pro &nbsp;|&nbsp; v1.5.0</footer>
+
 </body>
 </html>

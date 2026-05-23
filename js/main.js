@@ -105,12 +105,12 @@ const VisualManager = {
     getThemeProps(theme) {
         const themes = {
             forest: { colors: ["#2d6a4f", "#40916c", "#74c69d"], minSize: 6, maxSize: 10, shape: 'leaf' },
-            space: { colors: ["#fff", "#ffd700", "#ff00ff"], minSize: 2, maxSize: 5, shape: 'star' },
-            candy: { colors: ["#ff4081", "#ffeb3b", "#00e5ff", "#76ff03"], minSize: 5, maxSize: 12, shape: 'rect' },
-            ocean: { colors: ["#caf0f8", "#90e0ef", "#00b4d8"], minSize: 8, maxSize: 15, shape: 'circle', spawnY: 'bottom' },
+            space: { colors: ["#7b2ff7", "#f72585", "#3a0ca3"], minSize: 2, maxSize: 5, shape: 'star' },
+            candy: { colors: ["#e91e8c", "#ffbe0b", "#fb5607"], minSize: 5, maxSize: 12, shape: 'rect' },
+            ocean: { colors: ["#0077b6", "#f0a500", "#0096c7"], minSize: 8, maxSize: 15, shape: 'circle', spawnY: 'bottom' },
             retro: { colors: ["#39ff14", "#ff00ff", "#00ffff"], minSize: 8, maxSize: 12, shape: 'rect' },
-            winter: { colors: ["#fff", "#f0f8ff", "#caf0f8"], minSize: 4, maxSize: 8, shape: 'circle' },
-            desert: { colors: ["#e85d04", "#ffba08", "#6a040f"], minSize: 4, maxSize: 7, shape: 'rect' }
+            winter: { colors: ["#2196f3", "#90e0ef", "#00b4d8"], minSize: 4, maxSize: 8, shape: 'circle' },
+            desert: { colors: ["#e85d04", "#ffba08", "#dc2f02"], minSize: 4, maxSize: 7, shape: 'rect' }
         };
         return themes[theme] || themes.forest;
     },
@@ -244,10 +244,14 @@ const Game = {
             gameOverScreen: document.getElementById('game-over-screen'),
             finalScore: document.getElementById('final-score'),
             failScore: document.getElementById('fail-score'),
-            themeBtns: document.querySelectorAll('.theme-btn'),
+            themeBtns: document.querySelectorAll('.theme-option'),
             restartBtns: document.querySelectorAll('.restart-btn'),
             progress: document.getElementById('progress-fill'),
-            lives: document.getElementById('lives-container')
+            lives: document.getElementById('lives-container'),
+            drawer: document.getElementById('settings-drawer'),
+            drawerToggle: document.getElementById('drawer-toggle'),
+            drawerClose: document.getElementById('drawer-close'),
+            drawerOverlay: document.getElementById('drawer-overlay')
         };
     },
 
@@ -258,12 +262,30 @@ const Game = {
         this.elements.restartBtns.forEach(btn => {
             btn.onclick = () => this.init();
         });
+        
+        // Drawer toggle
+        this.elements.drawerToggle.onclick = () => this.toggleDrawer(true);
+        this.elements.drawerClose.onclick = () => this.toggleDrawer(false);
+        this.elements.drawerOverlay.onclick = () => this.toggleDrawer(false);
+    },
+
+    toggleDrawer(open) {
+        this.elements.drawer.classList.toggle('open', open);
+        this.elements.drawerOverlay.classList.toggle('visible', open);
+        
+        // Mark active theme
+        if (open) {
+            this.elements.themeBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.theme === this.state.currentTheme);
+            });
+        }
     },
 
     setTheme(key) {
         this.state.currentTheme = key;
-        document.body.className = this.themes[key].class;
+        document.body.className = `theme-${key}`;
         this.state.levels = this.generateLevels();
+        this.toggleDrawer(false); // Close drawer after selection
         this.loadLevel();
     },
 
